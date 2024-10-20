@@ -25,6 +25,9 @@ public class RideContext {
     }
 
     public double calculateFare() {
+        if (distance < 0 || duration < 0) {
+            throw new IllegalArgumentException("Distance and duration must be non-negative.");
+        }
         selectStrategy();
         double fare = strategy.calculateFare(distance, duration);
         return Math.max(fare, 5.0);
